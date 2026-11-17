@@ -1,0 +1,350 @@
+/* Motion and effects for legacy, services, partners, standards, reach, footer. Owner: Wanda (frontend-engineer). */
+
+/*
+ * CONTRACT section 9: one shared grammar, one signature move per section.
+ *
+ *   Legacy     "ink"        heading and paragraphs write in line by line, left to right
+ *              "cellar"     the barrel photograph opens top to bottom and settles
+ *   Services   "ledger"     each row's title slides along its rule as the rule draws
+ *              "doors"      the photo panel opens from the centre outward
+ *              .svc-sweep   switching services: one short left-to-right light sweep
+ *   Partners   "side"       the left photo wipes in left to right, then the right one
+ *              "divider"    the centre divider draws top to bottom
+ *   Standards  "develop"    the crate photograph develops from dark, with a slight settle
+ *              "press"      titles and text set in, letter-spacing tightening to normal
+ *   Reach      "push"       the highway photograph slowly pushes in
+ *              .map-draw    the map traces west to east (scroll-driven, below)
+ *   Footer     "seal"       the crest emerges, then one gold glint (the hero's lld-glint)
+ *
+ * Supporting elements use the base primitives in motion-hero.css ("up", "line", "fade").
+ *
+ * Rules:
+ * - Plays once, when the section locks in: keyed on [data-section][data-in="true"].
+ * - Delay = calc(var(--i, 0) * var(--motion-step)); RevealController sets --i (column-major).
+ * - Tokens only: --motion-ease, --motion-dur, --motion-dur-slow, --motion-step, --motion-shift.
+ * - Everything travels left to right or top to bottom.
+ * - Signatures are keyframe animations with `backwards` fill: the start frame holds through the
+ *   delay, and when the animation ends the element is simply its own, plain, visible style.
+ *   (A transition from inset() to `none` cannot interpolate; keyframes from inset() to inset(0) can.)
+ * - Hidden start states exist only under html.js:not(.reveal-off), on screen, with motion
+ *   welcome. Without JS, with a failed bundle, in print or with reduced motion: static and visible.
+ */
+
+/* ---------- Base (static) styles the signatures rely on ---------- */
+
+/* Ink words: inline-block so each can be clipped; padding keeps descenders inside the clip. */
+.ink-w {
+  display: inline-block;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+[data-reveal="divider"] {
+  transform-origin: top center;
+}
+
+/* Services light sweep: invisible unless its animation runs. */
+.svc-sweep {
+  opacity: 0;
+  background-image: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgb(var(--gilt) / 0.22) 50%,
+    transparent 62%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  mix-blend-mode: screen;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* ---------- Hidden start states (before the section locks in) ---------- */
+
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="ink"] .ink-w,
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="side"] {
+    clip-path: inset(0 100% 0 0);
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="cellar"] {
+    clip-path: inset(0 0 100% 0);
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="ledger"] {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translate3d(calc(var(--motion-shift) * -1), 0, 0);
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="doors"] {
+    opacity: 0;
+    clip-path: inset(0 50% 0 50%);
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="divider"] {
+    transform: scaleY(0);
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="develop"] {
+    filter: brightness(0.35);
+    transform: scale(1.06);
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="press"] {
+    opacity: 0;
+    letter-spacing: 0.06em;
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="push"] {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="seal"] {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: brightness(0.4);
+  }
+
+  /* ---------- Legacy: Ink ---------- */
+
+  /*
+   * One pen across the whole group: line after line (--l, set by InkGroup), and within a line,
+   * left to right by each word's position (--x). Each word is a short clip wipe.
+   */
+  [data-reveal="ink"] {
+    --ink-line: calc(var(--motion-step) * 1.6);
+    --ink-sweep: calc(var(--motion-step) * 2);
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="ink"] .ink-w {
+    animation: lld-wipe-right calc(var(--motion-dur) * 0.4) var(--motion-ease) backwards;
+    animation-delay: calc(
+      var(--i, 0) * var(--motion-step) + var(--l, 0) * var(--ink-line) + var(--x, 0) * var(--ink-sweep)
+    );
+  }
+  /* The principles wait for the pen: each gold dash draws, then its text follows. */
+  html.js:not(.reveal-off) .legacy-principles [data-reveal] {
+    transition-delay: calc(var(--i, 0) * var(--motion-step) + var(--motion-dur));
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="cellar"] {
+    animation: lld-cellar var(--motion-dur-slow) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="cellar"] img {
+    animation: lld-settle-in calc(var(--motion-dur-slow) * 1.5) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+
+  /* ---------- Services: Ledger ---------- */
+
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="ledger"] {
+    animation: lld-ledger var(--motion-dur) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="doors"] {
+    animation: lld-doors var(--motion-dur-slow) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+  .svc-sweep {
+    animation: lld-sweep calc(var(--motion-dur) * 0.75) var(--motion-ease) both;
+  }
+
+  /* ---------- Partners: Two sides of one table ---------- */
+
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="side"] {
+    animation: lld-wipe-right var(--motion-dur-slow) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="divider"] {
+    animation: lld-divider var(--motion-dur-slow) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+
+  /* ---------- Standards: Stamp of approval ---------- */
+
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="develop"] {
+    animation: lld-develop calc(var(--motion-dur-slow) * 1.4) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="press"] {
+    animation: lld-press var(--motion-dur) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+
+  /* ---------- Reach: Coverage ---------- */
+
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="push"] {
+    animation: lld-push calc(var(--motion-dur-slow) + var(--motion-dur)) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+
+  /* ---------- Footer: Seal ---------- */
+
+  html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="seal"] {
+    animation: lld-seal var(--motion-dur-slow) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * var(--motion-step));
+  }
+  /* The hero glint plays on page load; this copy waits for the footer to lock in instead. */
+  .lld-glint.seal-glint {
+    animation: none;
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] .lld-glint.seal-glint {
+    animation: lld-glint calc(var(--motion-dur) * 1.2) var(--motion-ease) both;
+    animation-delay: calc(var(--i, 0) * var(--motion-step) + var(--motion-dur) * 0.8);
+  }
+}
+
+@keyframes lld-wipe-right {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes lld-cellar {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes lld-settle-in {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes lld-ledger {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translate3d(calc(var(--motion-shift) * -1), 0, 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* Opacity is a belt-and-braces: fully closed doors are also fully transparent until they move. */
+@keyframes lld-doors {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 50% 0 50%);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes lld-sweep {
+  0% {
+    opacity: 0;
+    background-position: 100% 0;
+  }
+  25%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    background-position: 0% 0;
+  }
+}
+@keyframes lld-divider {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes lld-develop {
+  from {
+    filter: brightness(0.35);
+    transform: scale(1.06);
+  }
+  to {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+}
+@keyframes lld-press {
+  from {
+    opacity: 0;
+    letter-spacing: 0.06em;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0em;
+  }
+}
+/* The highway fades up from black early in the push, then keeps settling. */
+@keyframes lld-push {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes lld-seal {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: brightness(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/*
+ * Reach map draw: the state outlines trace west to east as the map scrolls into view.
+ * Scroll-driven, so it is bound to the visitor's own scrolling; it finishes before a snapped
+ * section comes to rest. Paths use pathLength="1", so 1 is a full outline.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .map-draw {
+      view-timeline-name: --map-draw;
+    }
+
+    .map-draw .map-state {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: lld-map-draw linear both;
+      animation-timeline: --map-draw;
+      /* --i runs 0..1 from west to east. Every outline finishes by cover 42%, before a snapped
+         section comes to rest (about cover 50%). */
+      animation-range: entry calc(10% + var(--i, 0) * 40%) cover calc(28% + var(--i, 0) * 14%);
+    }
+
+    .map-draw .map-insets {
+      animation: lld-map-fade linear both;
+      animation-timeline: --map-draw;
+      animation-range: cover 25% cover 42%;
+    }
+  }
+}
+
+@keyframes lld-map-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lld-map-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

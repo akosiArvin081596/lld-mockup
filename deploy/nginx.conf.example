@@ -1,0 +1,79 @@
+# Nginx reverse proxy for the Liquid Legacy Distribution site.
+# Replace your-domain.com and CHANGE-ME-proxy-secret, then: sudo nginx -t && sudo systemctl reload nginx
+# Certificates: sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+#
+# The Node server must listen on 127.0.0.1 only (see README). Nginx is the only way in.
+
+# Put these lines in the http {} block (for example /etc/nginx/conf.d/lld.conf):
+# limit_req_zone $binary_remote_addr zone=lld_contact:10m rate=10r/m;
+# limit_req_zone $binary_remote_addr zone=lld_images:10m rate=120r/m;
+# server_tokens off;
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name your-domain.com www.your-domain.com;
+    return 301 https://www.your-domain.com$request_uri;
+}
+
+server {
+    # nginx older than 1.25.1 (Ubuntu 22.04/24.04 packages): use "listen 443 ssl http2;" and drop "http2 on;".
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name your-domain.com;
+    ssl_certificate     /etc/letsencrypt/live/your-domain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    # Add includeSubDomains only once every subdomain serves HTTPS.
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    return 301 https://www.your-domain.com$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name www.your-domain.com;
+
+    ssl_certificate     /etc/letsencrypt/live/your-domain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    add_header Strict-Transport-Security "max-age=31536000" always;
+
+    # The contact form posts small JSON bodies only.
+    client_max_body_size 32k;
+
+    gzip on;
+    gzip_types text/css application/javascript application/json image/svg+xml text/plain;
+
+    # Overwrite (do not append) the forwarding headers so a visitor cannot spoof their IP,
+    # and prove to the app that the request came through this proxy (must match PROXY_SECRET).
+    # Note: any proxy_set_header inside a location block would drop ALL of these there.
+    proxy_set_header Host              $host;
+    proxy_set_header X-Real-IP         $remote_addr;
+    proxy_set_header X-Forwarded-For   $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-LLD-Proxy       "CHANGE-ME-proxy-secret";
+    proxy_http_version 1.1;
+
+    # Next.js waits up to about 30 s for SMTP; keep a margin.
+    proxy_read_timeout 45s;
+
+    location = /api/contact {
+        limit_req zone=lld_contact burst=5 nodelay;
+        limit_req_status 429;
+        proxy_pass http://127.0.0.1:3000;
+    }
+
+    location /_next/image {
+        limit_req zone=lld_images burst=60 nodelay;
+        limit_req_status 429;
+        proxy_pass http://127.0.0.1:3000;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+    }
+}

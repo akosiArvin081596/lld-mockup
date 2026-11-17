@@ -1,0 +1,22 @@
+{
+  "lockup-horizontal": {
+    "aspect": 5.1913,
+    "x": 0.371
+  },
+  "seal": {
+    "aspect": 1,
+    "x": null
+  },
+  "monogram": {
+    "aspect": 0.9984,
+    "x": 0.2552
+  },
+  "wordmark": {
+    "aspect": 6.2951,
+    "x": null
+  },
+  "shield": {
+    "aspect": 0.597,
+    "x": null
+  }
+}

@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Liquid Legacy Distribution, brand guidelines 1.0</title>
+<link rel="stylesheet" href="/brand-book/styles.css">
+</head>
+<body>
+
+<!-- Shared SVG definitions: paper fibre, ink stamp, embroidery thread -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="fibre" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="4" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.24  0 0 0 0 0.17  0 0 0 0 0.09  0 0 0 0.55 0" result="tint"/>
+      <feComposite in="tint" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="stamp" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="11" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3.2 2.35" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="speck"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="w"/>
+      <feDisplacementMap in="speck" in2="w" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="thread" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.9 0.08" numOctaves="1" seed="7" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="2.4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.6 0.25" numOctaves="1" seed="2" result="s"/>
+      <feColorMatrix in="s" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.9 1.25" result="sm"/>
+      <feComposite in="d" in2="sm" operator="in"/>
+    </filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.16 0"/>
+    </filter>
+    <pattern id="twill" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-28)">
+      <rect width="6" height="6" fill="#262624"/>
+      <rect width="6" height="2.2" fill="#2d2d2b"/>
+    </pattern>
+  </defs>
+</svg>
+
+<!-- 1. Cover -->
+<section class="page cover" data-folio="none">
+  <img class="cover__crest" src="/public/brand/crest-full.png" alt="Liquid Legacy Distribution crest">
+  <div class="cover__title">
+    <h1 class="display">Brand guidelines</h1>
+    <p class="cover__meta">Edition 1.0<br>November 2026<br>Prepared by AlchemyDev</p>
+  </div>
+</section>
+
+<!-- 2. Contents -->
+<section class="page page--obsidian" data-chapter="Contents">
+  <div class="frame">
+    <h2 class="display" style="grid-column: 1 / span 4;">Contents</h2>
+    <ol class="contents rule-list" id="contents"></ol>
+  </div>
+</section>
+
+<!-- 01 Who we are: opener -->
+<section class="page opener on-photo" data-chapter="Who we are" data-chapter-num="01" data-start>
+  <img class="bleed" src="/public/media/hero-poster.jpg" alt="">
+  <div class="opener__text">
+    <div class="opener__num">01</div>
+    <div class="opener__title">Who we are</div>
+  </div>
+</section>
+
+<section class="page" data-chapter="Who we are">
+  <div class="frame" style="grid-template-rows: 1fr;">
+    <div style="grid-column: 1 / span 7; display: flex; flex-direction: column; justify-content: space-between;">
+      <h2 class="display" style="max-width: 9.5em;">A distributor built around the bottle.</h2>
+      <p class="lede" style="font-size: 26px; line-height: 40px; max-width: 29em;">Liquid Legacy Distribution is a national wine and spirits distributor, established in 2026. We carry a focused portfolio from producers who care how their bottles are represented, and we place those bottles with the retailers, restaurants and bars where they belong.</p>
+    </div>
+    <div style="grid-column: 9 / span 4; align-self: end;" class="stack">
+      <h3 class="h3 gold">Positioning</h3>
+      <p class="italic" style="font-size: 27px; line-height: 42px; color: var(--parchment);">For wineries, distilleries and importers who want their brands sold with care at national scale, Liquid Legacy Distribution is the partner that pairs the reach of a national operator with the attention of a small importer. We keep our portfolio focused and our people accountable to every brand we carry.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 Mission, vision, values -->
+<section class="page page--obsidian" data-chapter="Mission, vision, values" data-chapter-num="02" data-start>
+  <div class="frame" style="grid-template-rows: auto 1fr auto;">
+    <div class="chapter-head" style="grid-column: 1 / -1;"><span class="chapter-head__num">02</span><h2 class="h2">Mission, vision, values</h2></div>
+    <div style="grid-column: 1 / span 6; align-self: center;" class="stack">
+      <h3 class="h3 gold">Mission</h3>
+      <p class="h3" style="font-size: 36px; line-height: 48px; color: var(--parchment);">To bring every bottle we carry to the right shelf and the right table, in the condition it left the cellar, with its story intact.</p>
+    </div>
+    <div style="grid-column: 8 / span 5; align-self: center;" class="stack">
+      <h3 class="h3 gold">Vision</h3>
+      <p class="h3" style="font-size: 36px; line-height: 48px; color: var(--parchment);">To be the distributor producers trust with their legacy, and the one retailers and restaurants are glad to see at the door.</p>
+    </div>
+    <div style="grid-column: 1 / -1;">
+      <h3 class="h3 gold" style="margin-bottom: 20px;">Values</h3>
+      <ul style="display: grid; grid-template-columns: repeat(4, 1fr); column-gap: var(--g);" class="rule-list">
+        <li><div class="h3">Stewardship</div><p class="small" style="margin-top: 8px; font-size: 17px; line-height: 26px;">We handle every brand as if it were our own.</p></li>
+        <li><div class="h3">Reach</div><p class="small" style="margin-top: 8px; font-size: 17px; line-height: 26px;">Built to grow market by market without losing the details.</p></li>
+        <li><div class="h3">Accountability</div><p class="small" style="margin-top: 8px; font-size: 17px; line-height: 26px;">Clear numbers, straight answers, one team that owns the result.</p></li>
+        <li><div class="h3">Responsibility</div><p class="small" style="margin-top: 8px; font-size: 17px; line-height: 26px;">We market to adults of legal drinking age, and only to them.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 03 Personality and voice -->
+<section class="page" data-chapter="Personality and voice" data-chapter-num="03" data-start>
+  <div class="frame" style="grid-template-rows: auto 1fr;">
+    <div class="chapter-head" style="grid-column: 1 / -1;"><span class="chapter-head__num">03</span><h2 class="h2">Personality and voice</h2></div>
+    <div style="grid-column: 1 / span 6; align-self: center;">
+      <p class="display" style="font-size: 76px; line-height: 92px;">Assured, not loud.<br>Traditional, not dusty.<br>Precise, not cold.<br>Warm, not casual.</p>
+    </div>
+    <div style="grid-column: 8 / span 5; align-self: center;">
+      <h3 class="h3 gold" style="margin-bottom: 20px;">Voice principles</h3>
+      <ul class="rule-list">
+        <li><div class="h4">Say it plainly.</div><p class="small" style="margin-top: 6px;">Short sentences, concrete nouns.</p></li>
+        <li><div class="h4">Earn trust with specifics.</div><p class="small" style="margin-top: 6px;">Never with superlatives.</p></li>
+        <li><div class="h4">Respect the craft.</div><p class="small" style="margin-top: 6px;">Talk about producers and their work more than about ourselves.</p></li>
+        <li><div class="h4">Stay responsible.</div><p class="small" style="margin-top: 6px;">Every message is written for adults of legal drinking age.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="page page--parchment" data-chapter="Personality and voice">
+  <div class="frame" style="grid-template-rows: auto 1fr;">
+    <h2 class="h2" style="grid-column: 1 / -1;">How we write</h2>
+    <div style="grid-column: 1 / span 7; align-self: center;">
+      <table class="spec" style="font-family: var(--text);">
+        <thead><tr><th style="width: 55%;">We say</th><th>We don't say</th></tr></thead>
+        <tbody>
+          <tr><td style="font-size: 26px; line-height: 34px;">We place your brand where it belongs.</td><td style="color: var(--ink-muted);">We'll skyrocket your sales.</td></tr>
+          <tr><td style="font-size: 26px; line-height: 34px;">Clear reporting, every month.</td><td style="color: var(--ink-muted);">Industry-leading, cutting-edge analytics.</td></tr>
+          <tr><td style="font-size: 26px; line-height: 34px;">Built for national scale.</td><td style="color: var(--ink-muted);">America's number one distributor.</td></tr>
+          <tr><td style="font-size: 26px; line-height: 34px;">Please enjoy responsibly.</td><td style="color: var(--ink-muted);">Drink up!</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="grid-column: 9 / span 4; align-self: center;">
+      <h3 class="h3" style="color: var(--gold-deep); margin-bottom: 20px;">Writing rules</h3>
+      <ul class="dash plain body" style="font-size: 19px; line-height: 30px;">
+        <li>Sentence case for headlines, buttons and labels.</li>
+        <li>No exclamation marks.</li>
+        <li>Write "wine and spirits", not "liquor" or "booze".</li>
+        <li>Use "Liquid Legacy Distribution" in full on first mention and "Liquid Legacy" after that. "LLD" is for the monogram only, not running copy.</li>
+        <li>Publish numbers only when they're verified.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Logo: opener -->
+<section class="page opener on-photo" data-chapter="Logo" data-chapter-num="04" data-start>
+  <img class="bleed" src="/public/media/legacy-barrel.jpg" alt="" style="object-position: 50% 62%;">
+  <div class="opener__text">
+    <div class="opener__num">04</div>
+    <div class="opener__title">Logo</div>
+  </div>
+</section>
+
+<!-- The crest -->
+<section class="page page--obsidian" data-chapter="Logo">
+  <div class="slate" style="position: absolute; top: 0; bottom: 0; left: 832px; right: 0;"></div>
+  <img src="/public/brand/crest-full.png" alt="The Liquid Legacy Distribution crest" style="position: absolute; left: 1036px; top: 100px; height: 880px;">
+  <div class="frame" style="right: auto; width: 600px; grid-template-columns: 1fr; align-content: start;">
+    <div class="stack">
+      <h2 class="display">The crest</h2>
+      <p class="status" style="margin-top: 12px;">Primary logo</p>
+      <p class="body" style="margin-top: 36px; color: var(--parchment);">The crest, with its "Liquid Legacy Distribution" lettering, is the official logo. It's a full-color render and is used on dark backgrounds only: the website, presentations, signage and the cover of this book.</p>
+      <p class="body">Parts of it can be used alone: the crest without lettering, the crowned LLD monogram, and the lettering by itself.</p>
+    </div>
+    <table class="spec" style="margin-top: 48px;">
+      <tr><td style="width: 46%; color: var(--stone);">Minimum size</td><td>240 px wide on screen, 60 mm in print</td></tr>
+      <tr><td style="color: var(--stone);">Never</td><td>Recolor it, place it on light backgrounds, or rebuild its artwork.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- Parts of the crest -->
+<section class="page page--obsidian" data-chapter="Logo">
+  <div class="frame" style="grid-template-rows: auto 1fr;">
+    <h2 class="h2" style="grid-column: 1 / -1;">Parts of the crest</h2>
+    <figure style="grid-column: 1 / span 4; display: grid; grid-template-rows: 1fr auto; margin-top: 48px;">
+      <div class="panel slate"><img src="/public/brand/crest-mark.png" alt="The crest without lettering" style="height: 440px;"></div>
+      <figcaption class="fig-caption"><div class="h4">The crest without lettering</div><p class="caption">When the name is already set nearby, or the space is square.</p></figcaption>
+    </figure>
+    <figure style="grid-column: 5 / span 4; display: grid; grid-template-rows: 1fr auto; margin-top: 48px;">
+      <div class="panel slate"><img src="/public/brand/official-monogram.png" alt="The crowned LLD monogram" style="width: 360px;"></div>
+      <figcaption class="fig-caption"><div class="h4">The crowned LLD monogram</div><p class="caption">Avatars, closures and other small, square spaces.</p></figcaption>
+    </figure>
+    <figure style="grid-column: 9 / span 4; display: grid; grid-template-rows: 1fr auto; margin-top: 48px;">
+      <div class="panel slate"><img src="/public/brand/official-wordmark.png" alt="The lettering" style="width: 440px;"></div>
+      <figcaption class="fig-caption"><div class="h4">The lettering by itself</div><p class="caption">Long, narrow spaces. Never retyped in another typeface.</p></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Logo variations -->
+<section class="page" data-chapter="Logo">
+  <div class="frame" style="grid-template-rows: auto 1fr; align-content: stretch;">
+    <div style="grid-column: 1 / span 6;">
+      <h2 class="h2">Logo variations</h2>
+      <p class="status" style="margin-top: 10px;">Proposed, for approval</p>
+    </div>
+    <p class="body" style="grid-column: 8 / span 5; align-self: end;">These are flat vector variations drawn from the crest, for places a full-color render can't go: one-color print, foil, embroidery, engraving, small sizes and light backgrounds. They are proposals for approval; until they're approved, the official crest is the only logo in use.</p>
+    <div class="variations">
+      <div class="variation variation--wide"><div class="variation__art" style="padding: 0 24px;"><img src="/public/brand/lockup-horizontal-gold.svg" alt="Horizontal lockup" style="height: 104px;"></div><div class="variation__meta"><span class="h4">Horizontal lockup</span><span class="caption">Website header, letterhead, email signature, documents.</span></div></div>
+      <div class="variation variation--wide"><div class="variation__art" style="padding: 0 24px;"><img src="/public/brand/wordmark-gold.svg" alt="Wordmark" style="height: 92px;"></div><div class="variation__meta"><span class="h4">Wordmark</span><span class="caption">Cartons, packaging, places where the monogram already appears nearby.</span></div></div>
+      <div class="variation variation--third"><div class="variation__art"><img src="/public/brand/monogram-gold.svg" alt="Monogram" style="height: 188px;"></div><div class="variation__meta"><span class="h4">Monogram</span><span class="caption" style="text-align: right;">Favicon, social avatar, embossing, small spaces.</span></div></div>
+      <div class="variation variation--third"><div class="variation__art"><img src="/public/brand/seal-gold.svg" alt="Seal" style="height: 188px;"></div><div class="variation__meta"><span class="h4">Seal</span><span class="caption" style="text-align: right;">Case stamps, wax seals, stickers, merchandise.</span></div></div>
+      <div class="variation variation--third"><div class="variation__art"><img src="/public/brand/shield-gold.svg" alt="Shield" style="height: 188px;"></div><div class="variation__meta"><span class="h4">Shield</span><span class="caption" style="text-align: right;">One-color stand-in for the crest: foil, engraving, uniforms.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Clear space and minimum sizes -->
+<section class="page page--obsidian" data-chapter="Logo">
+  <div class="frame" style="grid-template-rows: auto 1fr;">
+    <div style="grid-column: 1 / span 6;" class="stack">
+      <h2 class="h2">Clear space</h2>
+      <p class="body">Keep clear space on every side equal to <span class="italic gold" style="font-size: 22px;">x</span>, the cap height of the "L" in the monogram.</p>
+    </div>
+    <div style="grid-column: 8 / span 5;" class="stack">
+      <h2 class="h2">Minimum sizes</h2>
+      <p class="body">Below these sizes the marks lose detail. Shown here at their screen minimum.</p>
+    </div>
+    <div style="grid-column: 1 / span 6; align-self: center;" id="clearspace-slot"></div>
+    <div style="grid-column: 8 / span 5; align-self: center;">
+      <table class="spec">
+        <thead><tr><th style="width: 38%;">Mark</th><th style="width: 26%;">Actual size</th><th>Screen</th><th>Print</th></tr></thead>
+        <tbody>
+          <tr><td>Horizontal lockup</td><td><img src="/public/brand/lockup-horizontal-gold.svg" alt="" style="width: 120px;"></td><td class="num">120 px</td><td class="num">30 mm</td></tr>
+          <tr><td>Wordmark</td><td><img src="/public/brand/wordmark-gold.svg" alt="" style="width: 140px;"></td><td class="num">140 px</td><td class="num">35 mm</td></tr>
+          <tr><td>Monogram</td><td><img src="/public/brand/monogram-gold.svg" alt="" style="width: 24px;"></td><td class="num">24 px</td><td class="num">8 mm</td></tr>
+          <tr><td>Seal</td><td><img src="/public/brand/seal-gold.svg" alt="" style="width: 64px;"></td><td class="num">64 px</td><td class="num">18 mm</td></tr>
+          <tr><td>Shield</td><td><img src="/public/brand/shield-gold.svg" alt="" style="height: 32px;"></td><td class="num">32 px</td><td class="num">10 mm</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Color versions -->
+<section class="page page--obsidian" data-chapter="Logo">
+  <div style="position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;">
+    <div class="quad" style="background: var(--obsidian);">
+      <h2 class="h2" style="position: absolute; left: var(--m); top: 72px;">Color versions</h2>
+      <img src="/public/brand/lockup-horizontal-gold.svg" alt="Lockup in gold on obsidian" style="height: 96px;">
+      <p class="quad__caption" style="left: var(--m); bottom: 56px; color: var(--stone);"><span class="h4" style="color: var(--parchment); font-size: 20px;">Gold on obsidian.</span> Primary.</p>
+    </div>
+    <div class="quad" style="background: #000 url('/public/media/partners-cellar.jpg') center 40% / cover;">
+      <div style="position: absolute; inset: 0; background: rgba(18, 17, 15, 0.62);"></div>
+      <img src="/public/brand/lockup-horizontal-parchment.svg" alt="Lockup in parchment over a photograph with a dark scrim" style="height: 96px; position: relative;">
+      <p class="quad__caption" style="left: 96px; bottom: 56px; color: rgba(239, 232, 218, 0.8);"><span class="h4" style="color: var(--parchment); font-size: 20px;">Parchment on obsidian or photography.</span> With a dark scrim.</p>
+    </div>
+    <div class="quad" style="background: var(--parchment);">
+      <img src="/public/brand/lockup-horizontal-ink.svg" alt="Lockup in ink on parchment" style="height: 96px;">
+      <p class="quad__caption" style="left: var(--m); color: var(--ink-muted);"><span class="h4" style="color: var(--ink); font-size: 20px;">Ink on parchment.</span> Light backgrounds and single-color print.</p>
+    </div>
+    <div class="quad" style="background: #e7dfcd;">
+      <img src="/public/brand/lockup-horizontal-gold-deep.svg" alt="Lockup in gold deep on parchment" style="height: 96px;">
+      <p class="quad__caption" style="left: 96px; color: var(--ink-muted);"><span class="h4" style="color: var(--ink); font-size: 20px;">Gold deep on parchment.</span> Premium light applications.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Misuse -->
+<section class="page" data-chapter="Logo">
+  <div class="frame">
+    <div class="misuse">
+      <div class="misuse__intro">
+        <h2 class="h2">Misuse</h2>
+        <p class="body">The marks are drawn once and used as supplied. These are the mistakes to catch before anything goes to print.</p>
+      </div>
+      <div class="misuse__tile"><div class="misuse__art"><img src="/public/brand/lockup-horizontal-gold.svg" alt="" style="height: 44px; transform: scale(1.32, 0.78);"></div><p class="caption fig-caption">Don't stretch or squash.</p></div>
+      <div class="misuse__tile"><div class="misuse__art"><img src="/public/brand/lockup-horizontal-gold.svg" alt="" style="height: 52px; filter: hue-rotate(150deg) saturate(2.4) brightness(1.05);"></div><p class="caption fig-caption">Don't recolor outside the palette.</p></div>
+      <div class="misuse__tile"><div class="misuse__art"><img src="/public/brand/monogram-gold.svg" alt="" style="height: 150px; filter: drop-shadow(0 0 10px rgba(230, 211, 163, 0.95)) drop-shadow(5px 7px 2px #000);"></div><p class="caption fig-caption">Don't add shadows, glows or bevels to the vector marks.</p></div>
+      <div class="misuse__tile"><div class="misuse__art"><img src="/public/brand/lockup-horizontal-gold.svg" alt="" style="height: 52px; transform: rotate(-12deg);"></div><p class="caption fig-caption">Don't rotate.</p></div>
+      <div class="misuse__tile"><div class="misuse__art" style="background: url('/public/media/partners-shop.jpg') 60% 30% / cover;"><img src="/public/brand/lockup-horizontal-parchment.svg" alt="" style="height: 52px;"></div><p class="caption fig-caption">Don't place on busy imagery without a scrim.</p></div>
+      <div class="misuse__tile"><div class="misuse__art" style="gap: 22px;"><img src="/public/brand/monogram-gold.svg" alt="" style="height: 100px;"><span style="font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-style: italic; font-size: 34px; line-height: 38px; color: var(--gold);">Liquid Legacy<br>Distribution</span></div><p class="caption fig-caption">Don't retype the wordmark in another typeface.</p></div>
+      <div class="misuse__tile"><div class="misuse__art" style="background: var(--parchment);"><img src="/public/brand/crest-full.png" alt="" style="height: 250px;"></div><p class="caption fig-caption">Don't place the full crest on a light background.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Color -->
+<section class="page page--obsidian" data-chapter="Color" data-chapter-num="05" data-start>
+  <div class="frame" style="grid-template-rows: auto 1fr auto; row-gap: 40px;">
+    <div class="chapter-head" style="grid-column: 1 / span 7;"><span class="chapter-head__num">05</span><h2 class="h2">Color</h2></div>
+    <p class="body" style="grid-column: 8 / span 5; align-self: end;">Three primary colors carry the brand. The secondary colors are for surfaces, text and fine detail.</p>
+    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;" id="primary-swatches"></div>
+    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; height: 236px;" id="secondary-swatches"></div>
+  </div>
+</section>
+
+<section class="page" data-chapter="Color">
+  <div class="frame" style="grid-template-rows: auto auto 1fr; row-gap: 0;">
+    <h2 class="h2" style="grid-column: 1 / span 6;">Proportion</h2>
+    <p class="body" style="grid-column: 8 / span 5;">About 70% obsidian and coal, 20% parchment and stone, 10% gold. Gold is an accent, never a background for large areas of text.</p>
+    <div style="grid-column: 1 / -1; margin-top: 40px;">
+      <div style="display: flex; gap: 4px; height: 120px;">
+        <div style="flex: 50; background: var(--obsidian); box-shadow: inset 0 0 0 1px rgba(168,160,147,.45);"></div>
+        <div style="flex: 20; background: var(--coal); box-shadow: inset 0 0 0 1px rgba(168,160,147,.45);"></div>
+        <div style="flex: 13; background: var(--parchment);"></div>
+        <div style="flex: 7; background: var(--stone);"></div>
+        <div style="flex: 10; background: var(--gold);"></div>
+      </div>
+      <div style="display: flex; margin-top: 14px;" class="caption">
+        <div style="flex: 70;">Obsidian and coal, 70%</div>
+        <div style="flex: 20;">Parchment and stone, 20%</div>
+        <div style="flex: 10;">Gold, 10%</div>
+      </div>
+    </div>
+    <div style="grid-column: 1 / span 6; align-self: end;" class="stack">
+      <h2 class="h2">Accessible pairings</h2>
+      <p class="body">WCAG contrast ratios for text. Bronze is decorative only (3.1:1 on obsidian).</p>
+      <p class="body" style="margin-top: 40px;">Print: CMYK values are in the tokens file. For metallic gold, specify an antique gold foil matched to a physical sample. Pantone references are to be confirmed with the printer.</p>
+    </div>
+    <div style="grid-column: 8 / span 5; align-self: end;">
+      <table class="spec">
+        <tbody id="pairings"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 Typography -->
+<section class="page page--obsidian" data-chapter="Typography" data-chapter-num="06" data-start>
+  <div class="frame" style="grid-template-rows: auto 1fr; row-gap: 56px;">
+    <div class="chapter-head" style="grid-column: 1 / span 6;"><span class="chapter-head__num">06</span><h2 class="h2">Typography</h2></div>
+    <p class="body" style="grid-column: 8 / span 5;">Both families come from American printing. Caslon set the Declaration of Independence; Franklin Gothic is the classic American sans. Both are open source (SIL Open Font License) and free for print and web.</p>
+    <div style="grid-column: 1 / span 4;" class="specimen">
+      <div class="specimen__aa" style="font-family: var(--display);">Aa</div>
+      <div class="h3" style="margin-top: 36px;">Libre Caslon Display</div>
+      <p class="small" style="margin-top: 8px;">Large headlines only. One weight (Regular); never bold or fake-bold it.</p>
+      <p class="specimen__set" style="font-family: var(--display);">ABCDEFGHIJKLM<br>NOPQRSTUVWXYZ<br>abcdefghijklm<br>nopqrstuvwxyz<br>0123456789</p>
+    </div>
+    <div style="grid-column: 5 / span 4;" class="specimen">
+      <div class="specimen__aa" style="font-family: var(--text);">Aa</div>
+      <div class="h3" style="margin-top: 36px;">Libre Caslon Text</div>
+      <p class="small" style="margin-top: 8px;">Smaller headings, pull quotes and italics. Regular, Italic and Bold.</p>
+      <p class="specimen__set" style="font-family: var(--text); font-size: 26px; line-height: 38px;">Regular for headings. <i>Italic for quotes and asides.</i> <b style="font-weight: 700;">Bold, sparingly.</b></p>
+    </div>
+    <div style="grid-column: 9 / span 4;" class="specimen">
+      <div class="specimen__aa" style="font-family: var(--sans); font-weight: 400;">Aa</div>
+      <div class="h3" style="margin-top: 36px;">Libre Franklin</div>
+      <p class="small" style="margin-top: 8px;">Body copy, navigation, buttons, forms and captions. Regular and Medium.</p>
+      <p class="specimen__set" style="font-family: var(--sans); font-size: 24px; line-height: 36px;">Regular sets running text at a comfortable measure. <span style="font-weight: 500;">Medium is for buttons and small labels.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-chapter="Typography">
+  <div class="frame" style="grid-template-rows: auto 1fr; row-gap: 32px;">
+    <h2 class="h2" style="grid-column: 1 / span 6;">Hierarchy</h2>
+    <div style="grid-column: 8 / span 5;">
+      <ul class="dash plain body" style="font-size: 19px; line-height: 30px;">
+        <li>Sentence case everywhere: headlines, buttons and labels.</li>
+        <li>No spaced-out capitals.</li>
+        <li>The logo lettering belongs to the crest artwork and is never retyped.</li>
+      </ul>
+    </div>
+    <table class="spec" style="grid-column: 1 / -1; align-self: end;">
+      <thead><tr><th style="width: 15%;">Style</th><th style="width: 24%;">Font</th><th style="width: 13%;">Size / line height</th><th>Sample</th></tr></thead>
+      <tbody>
+        <tr><td>Display</td><td>Libre Caslon Display</td><td class="num">96 / 98</td><td style="font-family: var(--display); font-size: 96px; line-height: 98px; white-space: nowrap;">Built around the bottle.</td></tr>
+        <tr><td>Heading 2</td><td>Libre Caslon Display</td><td class="num">56 / 60</td><td style="font-family: var(--display); font-size: 56px; line-height: 60px;">Two sides of one table.</td></tr>
+        <tr><td>Heading 3</td><td>Libre Caslon Text</td><td class="num">28 / 34</td><td style="font-family: var(--text); font-size: 28px; line-height: 34px;">How a bottle travels with us.</td></tr>
+        <tr><td>Body</td><td>Libre Franklin Regular</td><td class="num">17 / 28</td><td style="font-size: 17px; line-height: 28px; color: var(--stone);">We carry a focused portfolio from producers who care how their bottles are represented.</td></tr>
+        <tr><td>Small</td><td>Libre Franklin Medium</td><td class="num">14 / 20</td><td style="font-size: 14px; line-height: 20px; font-weight: 500;">Clear reporting, every month.</td></tr>
+        <tr><td>Caption</td><td>Libre Franklin</td><td class="num">13 / 20</td><td style="font-size: 13px; line-height: 20px; color: var(--stone);">Please enjoy responsibly.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 07 Photography: opener -->
+<section class="page opener on-photo" data-chapter="Photography" data-chapter-num="07" data-start>
+  <img class="bleed" src="/public/media/partners-cellar.jpg" alt="" style="object-position: 50% 55%;">
+  <div class="opener__text">
+    <div class="opener__num">07</div>
+    <div class="opener__title">Photography</div>
+  </div>
+</section>
+
+<section class="page page--obsidian" data-chapter="Photography">
+  <div class="frame" style="grid-template-rows: 1fr;">
+    <div style="grid-column: 1 / span 4; display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="stack">
+        <h2 class="h2">Real places, real light.</h2>
+        <ul class="dash plain body" style="margin-top: 32px; font-size: 19px; line-height: 30px;">
+          <li>Environments over people: cellars, warehouses, tasting rooms, back bars, loading docks.</li>
+          <li>Natural or practical light, deep shadows, warm amber against cool blue hour.</li>
+          <li>Visible texture: oak, stone, glass, steel.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h3 gold" style="margin-bottom: 16px;">Don't</h3>
+        <ul class="rule-list" style="font-size: 18px; line-height: 26px;">
+          <li style="padding: 12px 0 13px;">Stock smiles and handshakes</li>
+          <li style="padding: 12px 0 13px;">Readable third-party labels or logos</li>
+          <li style="padding: 12px 0 13px;">Anyone who could appear under 25</li>
+          <li style="padding: 12px 0 13px;">Over-processed HDR or glossy CGI</li>
+          <li style="padding: 12px 0 13px;">Any suggestion of excess or drinking and driving</li>
+        </ul>
+      </div>
+    </div>
+    <div style="grid-column: 6 / span 7; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 40px var(--g);">
+      <figure style="display: grid; grid-template-rows: 1fr auto;"><div class="photo"><img src="/public/media/process-store.jpg" alt="Warehouse aisle under skylights"></div><figcaption class="fig-caption"><span class="h4">Do:</span> <span class="caption">natural light</span></figcaption></figure>
+      <figure style="display: grid; grid-template-rows: 1fr auto;"><div class="photo"><img src="/public/media/process-select.jpg" alt="Tasting glasses on a dark table" style="object-position: 70% 50%;"></div><figcaption class="fig-caption"><span class="h4">Do:</span> <span class="caption">quiet compositions with room for type</span></figcaption></figure>
+      <figure style="display: grid; grid-template-rows: 1fr auto;"><div class="photo"><img src="/public/media/legacy-barrel.jpg" alt="Close view of an oak barrel" style="object-position: 50% 60%;"></div><figcaption class="fig-caption"><span class="h4">Do:</span> <span class="caption">honest wear and imperfection</span></figcaption></figure>
+      <figure style="display: grid; grid-template-rows: 1fr auto;"><div class="photo"><img src="/public/media/process-sell.jpg" alt="Back bar with bottles out of focus"></div><figcaption class="fig-caption"><span class="h4">Do:</span> <span class="caption">labels softly out of focus</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 08 Graphic elements -->
+<section class="page" data-chapter="Graphic elements" data-chapter-num="08" data-start>
+  <div class="frame" style="grid-template-rows: auto 1fr; row-gap: 56px;">
+    <div class="chapter-head" style="grid-column: 1 / -1;"><span class="chapter-head__num">08</span><h2 class="h2">Graphic elements</h2></div>
+    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--g); align-content: end;">
+      <figure>
+        <div class="panel slate" style="height: 500px;"><img src="/public/brand/crest-mark.png" alt="" style="height: 250px;"></div>
+        <figcaption class="fig-caption"><div class="h4">The crest</div><p class="caption" style="margin-top: 6px;">The hero element. Give it room, and show it on dark stone or obsidian.</p></figcaption>
+      </figure>
+      <figure>
+        <div class="panel" style="height: 500px; background: var(--obsidian); align-items: center; padding: 0 40px;">
+          <ul class="rule-list" style="width: 100%; font-family: var(--text); font-size: 24px; line-height: 30px;">
+            <li style="padding: 16px 0;">Stewardship</li><li style="padding: 16px 0;">Reach</li><li style="padding: 16px 0;">Accountability</li><li style="padding: 16px 0;">Responsibility</li>
+          </ul>
+        </div>
+        <figcaption class="fig-caption"><div class="h4">Gold rules</div><p class="caption" style="margin-top: 6px;">1 px, used to separate items in a list or to frame the crest, not as decoration everywhere.</p></figcaption>
+      </figure>
+      <figure>
+        <div class="panel" style="height: 500px; background: var(--obsidian); padding: 0 40px; justify-content: flex-start;">
+          <ol style="list-style: none; width: 100%;">
+            <li style="display: flex; gap: 22px; align-items: baseline; padding: 9px 0;"><span style="font-family: var(--display); color: var(--gold); font-size: 40px; width: 28px;">1</span><span style="font-family: var(--text); font-size: 26px;">Select</span></li>
+            <li style="display: flex; gap: 22px; align-items: baseline; padding: 9px 0;"><span style="font-family: var(--display); color: var(--gold); font-size: 40px; width: 28px;">2</span><span style="font-family: var(--text); font-size: 26px;">Store</span></li>
+            <li style="display: flex; gap: 22px; align-items: baseline; padding: 9px 0;"><span style="font-family: var(--display); color: var(--gold); font-size: 40px; width: 28px;">3</span><span style="font-family: var(--text); font-size: 26px;">Sell</span></li>
+            <li style="display: flex; gap: 22px; align-items: baseline; padding: 9px 0;"><span style="font-family: var(--display); color: var(--gold); font-size: 40px; width: 28px;">4</span><span style="font-family: var(--text); font-size: 26px;">Deliver</span></li>
+          </ol>
+        </div>
+        <figcaption class="fig-caption"><div class="h4">Numbering</div><p class="caption" style="margin-top: 6px;">Only for real sequences, such as the four steps of how a bottle travels with us.</p></figcaption>
+      </figure>
+      <figure>
+        <div style="height: 500px; display: grid; grid-template-columns: 1fr 1fr;">
+          <div class="slate"></div>
+          <div style="position: relative; background: url('/public/media/process-deliver.jpg') 30% 50% / cover;">
+            <svg style="position: absolute; inset: 0; width: 100%; height: 100%;"><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+          </div>
+        </div>
+        <figcaption class="fig-caption"><div class="h4">Texture</div><p class="caption" style="margin-top: 6px;">Dark slate behind the crest, and a fine film grain over photography.</p></figcaption>
+      </figure>
+      <figure>
+        <div class="panel" style="height: 500px; background: #b38a58; overflow: hidden;">
+          <svg style="position: absolute; inset: 0; width: 100%; height: 100%;"><rect width="100%" height="100%" fill="#b38a58" filter="url(#fibre)"/></svg>
+          <svg viewBox="0 0 1000 1000" style="position: relative; width: 210px; transform: rotate(-8deg);" aria-hidden="true"><image href="/public/brand/seal-ink.svg" width="1000" height="1000" opacity="0.86" filter="url(#stamp)"/></svg>
+        </div>
+        <figcaption class="fig-caption"><div class="h4">The seal as a stamp</div><p class="caption" style="margin-top: 6px;">One color, on kraft cartons, wax and paper. This uses the proposed seal variation.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 09 Applications: opener -->
+<section class="page opener on-photo" data-chapter="Applications" data-chapter-num="09" data-start>
+  <img class="bleed" src="/public/media/process-deliver.jpg" alt="" style="object-position: 50% 60%;">
+  <div class="opener__text">
+    <div class="opener__num">09</div>
+    <div class="opener__title">Applications</div>
+  </div>
+</section>
+
+<!-- Business card and letterhead -->
+<section class="page" data-chapter="Applications" style="background: #2a2824;">
+  <div style="position: absolute; left: var(--m); top: var(--top); width: 900px;">
+    <h2 class="h2">Business card and letterhead</h2>
+  </div>
+  <!-- front -->
+  <div class="bcard bcard--front shadow-card" style="left: 136px; top: 290px;">
+    <img src="/public/brand/seal-gold.svg" alt="" style="width: 190px;">
+  </div>
+  <!-- back -->
+  <div class="bcard bcard--back shadow-card" style="left: 540px; top: 520px; transform: rotate(-3deg);">
+    <div class="bcard__name">Name Surname</div>
+    <div class="bcard__title">Title</div>
+    <div class="bcard__contact">+1 (000) 000-0000<br>name@yourdomain.com</div>
+    <img class="bcard__mark" src="/public/brand/lockup-horizontal-gold.svg" alt="">
+  </div>
+  <p class="mock-caption" style="left: 136px; width: 960px;">Business card, 3.5 × 2 in. The seal in gold on obsidian on the front; name, title and contact in parchment on the back, with a small lockup.</p>
+  <!-- letter -->
+  <div class="letter shadow-paper" style="left: 1208px; top: 136px;">
+    <img class="letter__lockup" src="/public/brand/lockup-horizontal-ink.svg" alt="">
+    <div class="letter__rule"></div>
+    <p>November 17, 2026</p>
+    <p style="margin-top: 26px;">Name Surname<br>Company<br>Street address<br>City, State ZIP</p>
+    <p style="margin-top: 26px;">Dear Name Surname,</p>
+    <p>Liquid Legacy Distribution is a national wine and spirits distributor, established in 2026. We carry a focused portfolio from producers who care how their bottles are represented, and we place those bottles with the retailers, restaurants and bars where they belong.</p>
+    <p>We keep our portfolio focused and our people accountable to every brand we carry.</p>
+    <p style="margin-top: 26px;">Sincerely,</p>
+    <p style="margin-top: 34px;">Name Surname<br>Title</p>
+    <div class="letter__foot"><span>Liquid Legacy Distribution</span><span>Street address, City, State ZIP</span><span>name@yourdomain.com</span></div>
+  </div>
+  <p class="mock-caption" style="left: 1208px; width: 576px;">Letterhead, US Letter. Horizontal lockup top left, a hairline below it, the address in the footer.</p>
+</section>
+
+<!-- Email signature and apparel -->
+<section class="page page--obsidian" data-chapter="Applications">
+  <div style="position: absolute; left: var(--m); top: var(--top);"><h2 class="h2">Email signature and apparel</h2></div>
+  <div class="mail shadow-paper" style="left: 136px; top: 290px; width: 760px;">
+    <div class="mail__bar">New message</div>
+    <div class="mail__body">
+      <div style="height: 10px; width: 78%; background: #ebe8e2; border-radius: 2px;"></div>
+      <div style="height: 10px; width: 64%; background: #ebe8e2; border-radius: 2px; margin-top: 14px;"></div>
+      <div style="height: 10px; width: 71%; background: #ebe8e2; border-radius: 2px; margin-top: 14px;"></div>
+      <div style="margin-top: 44px; padding-top: 26px; border-top: 1px solid #ece9e3;">
+        <div class="sig__name">Name Surname</div>
+        <div class="sig__meta">Title, Liquid Legacy Distribution<br>+1 (000) 000-0000<br>name@yourdomain.com</div>
+        <img src="/public/brand/lockup-horizontal-ink.svg" alt="" style="width: 160px; margin-top: 20px;">
+        <div class="sig__note">Please enjoy responsibly.</div>
+      </div>
+    </div>
+  </div>
+  <p class="mock-caption" style="left: 136px; width: 760px;">Email signature: name, title, phone and email, with the lockup at 160 px wide.</p>
+
+  <div style="position: absolute; left: 1024px; top: 0; right: 0; bottom: 0; overflow: hidden;">
+    <svg viewBox="0 0 896 1080" style="width: 100%; height: 100%;" aria-hidden="true">
+      <rect width="896" height="1080" fill="url(#twill)"/>
+      <!-- collar shadow and placket -->
+      <path d="M0 0 H896 V60 C700 120 420 130 0 70 Z" fill="#1d1d1b" opacity="0.7"/>
+      <rect x="610" y="0" width="70" height="1080" fill="#232321"/>
+      <line x1="610" y1="0" x2="610" y2="1080" stroke="#1a1a18" stroke-width="2"/>
+      <line x1="618" y1="0" x2="618" y2="1080" stroke="#3a3a37" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <line x1="672" y1="0" x2="672" y2="1080" stroke="#3a3a37" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <g fill="#3b3a36"><circle cx="645" cy="250" r="11"/><circle cx="645" cy="560" r="11"/><circle cx="645" cy="870" r="11"/></g>
+      <g fill="#262522"><circle cx="641" cy="247" r="1.6"/><circle cx="649" cy="253" r="1.6"/><circle cx="641" cy="557" r="1.6"/><circle cx="649" cy="563" r="1.6"/><circle cx="641" cy="867" r="1.6"/><circle cx="649" cy="873" r="1.6"/></g>
+      <!-- chest pocket -->
+      <path d="M150 560 H480 V900 L315 950 L150 900 Z" fill="#292927" stroke="#1b1b19" stroke-width="2"/>
+      <path d="M150 560 H480 V610 H150 Z" fill="#2c2c2a" stroke="#1b1b19" stroke-width="1.5"/>
+      <path d="M160 620 H470 V893 L315 940 L160 893 Z" fill="none" stroke="#3c3c38" stroke-width="1.3" stroke-dasharray="6 4"/>
+      <!-- patch: merrowed edge, coal ground, embroidered monogram -->
+      <circle cx="315" cy="330" r="150" fill="#000" opacity="0.35" transform="translate(0 6)"/>
+      <circle cx="315" cy="330" r="150" fill="#6d5531"/>
+      <circle cx="315" cy="330" r="150" fill="none" stroke="#8a6d3f" stroke-width="12" stroke-dasharray="1.6 2.4"/>
+      <circle cx="315" cy="330" r="138" fill="#1b1a17"/>
+      <circle cx="315" cy="330" r="127" fill="none" stroke="#7a5c30" stroke-width="2" stroke-dasharray="5 3"/>
+      <image href="/public/brand/monogram-gold.svg" x="205" y="220" width="220" height="220" filter="url(#thread)"/>
+    </svg>
+  </div>
+  <p class="mock-caption" style="left: 1104px; color: rgba(239,232,218,.85);">Apparel: an embroidered monogram patch on a dark work shirt.</p>
+</section>
+
+<!-- Case stamp and delivery vehicle -->
+<section class="page page--parchment" data-chapter="Applications" style="background: #e4ddcf;">
+  <div style="position: absolute; left: var(--m); top: var(--top);"><h2 class="h2">Case stamp and delivery vehicle</h2></div>
+
+  <!-- kraft carton -->
+  <svg viewBox="0 0 640 560" style="position: absolute; left: 112px; top: 307px; width: 600px;" aria-hidden="true">
+    <ellipse cx="320" cy="536" rx="300" ry="16" fill="#000" opacity="0.16"/>
+    <!-- top face -->
+    <polygon points="40,150 600,150 560,96 80,96" fill="#c49b67"/>
+    <polygon points="40,150 600,150 560,96 80,96" fill="#c49b67" filter="url(#fibre)" opacity="0.6"/>
+    <line x1="60" y1="123" x2="580" y2="123" stroke="#a37b4b" stroke-width="1.5"/>
+    <!-- front face -->
+    <rect x="40" y="150" width="560" height="380" fill="#b38a58"/>
+    <rect x="40" y="150" width="560" height="380" fill="#b38a58" filter="url(#fibre)"/>
+    <rect x="40" y="150" width="560" height="380" fill="url(#kraftShade)"/>
+    <!-- tape -->
+    <polygon points="250,96 390,96 390,150 250,150" fill="#d6b88d" opacity="0.55"/>
+    <rect x="250" y="150" width="140" height="70" fill="#d6b88d" opacity="0.5"/>
+    <line x1="250" y1="220" x2="390" y2="220" stroke="#a37b4b" stroke-width="1" opacity="0.6"/>
+    <!-- stamp -->
+    <g transform="translate(206 248) rotate(-7 114 114)">
+      <image href="/public/brand/seal-ink.svg" width="228" height="228" opacity="0.84" filter="url(#stamp)"/>
+    </g>
+    <defs>
+      <linearGradient id="kraftShade" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#000" stop-opacity="0.06"/>
+        <stop offset="1" stop-color="#000" stop-opacity="0.16"/>
+      </linearGradient>
+    </defs>
+  </svg>
+  <p class="mock-caption" style="left: 136px; width: 640px;">Case stamp: the seal in one color on a kraft carton.</p>
+
+  <!-- box truck, side and rear -->
+  <svg viewBox="0 0 1000 420" style="position: absolute; left: 780px; top: 480px; width: 840px;" aria-hidden="true">
+    <ellipse cx="490" cy="392" rx="470" ry="14" fill="#000" opacity="0.16"/>
+    <!-- chassis -->
+    <rect x="70" y="300" width="840" height="34" fill="#2a2925"/>
+    <!-- box -->
+    <rect x="40" y="40" width="660" height="262" rx="4" fill="#f6f4ef"/>
+    <g stroke="#e3dfd6" stroke-width="2">
+      <line x1="150" y1="44" x2="150" y2="298"/><line x1="260" y1="44" x2="260" y2="298"/><line x1="370" y1="44" x2="370" y2="298"/><line x1="480" y1="44" x2="480" y2="298"/><line x1="590" y1="44" x2="590" y2="298"/>
+    </g>
+    <rect x="40" y="40" width="660" height="10" fill="#e8e5de"/>
+    <rect x="40" y="290" width="660" height="2" fill="#7a5c30"/>
+    <rect x="80" y="122" width="580" height="104" fill="#f6f4ef"/>
+    <image href="/public/brand/lockup-horizontal-ink.svg" x="100" y="128" width="540" height="92"/>
+    <!-- cab -->
+    <path d="M708 300 V104 Q708 96 716 96 H842 Q856 96 864 110 L912 196 Q918 206 930 210 L946 214 Q956 218 956 230 V300 Z" fill="#f6f4ef"/>
+    <path d="M730 112 H836 Q846 112 852 122 L890 192 H730 Z" fill="#2d333a"/>
+    <path d="M730 112 H836 Q846 112 852 122 L862 140 H730 Z" fill="#3c444d"/>
+    <line x1="808" y1="116" x2="808" y2="296" stroke="#d8d4cb" stroke-width="2"/>
+    <rect x="818" y="210" width="26" height="6" rx="2" fill="#bfbab0"/>
+    <rect x="700" y="130" width="8" height="70" rx="3" fill="#2a2925"/>
+    <rect x="930" y="256" width="40" height="40" rx="3" fill="#2a2925"/>
+    <rect x="944" y="226" width="14" height="14" rx="2" fill="#e6d3a3"/>
+    <!-- wheels -->
+    <g>
+      <circle cx="170" cy="334" r="46" fill="#1d1c1a"/><circle cx="170" cy="334" r="22" fill="#8b8780"/><circle cx="170" cy="334" r="8" fill="#4a4843"/>
+      <circle cx="270" cy="334" r="46" fill="#1d1c1a"/><circle cx="270" cy="334" r="22" fill="#8b8780"/><circle cx="270" cy="334" r="8" fill="#4a4843"/>
+      <circle cx="832" cy="334" r="46" fill="#1d1c1a"/><circle cx="832" cy="334" r="22" fill="#8b8780"/><circle cx="832" cy="334" r="8" fill="#4a4843"/>
+    </g>
+  </svg>
+  <svg viewBox="0 0 260 420" style="position: absolute; left: 1644px; top: 598px; width: 140px;" aria-hidden="true">
+    <ellipse cx="130" cy="392" rx="118" ry="10" fill="#000" opacity="0.16"/>
+    <rect x="16" y="300" width="228" height="34" fill="#2a2925"/>
+    <rect x="34" y="334" width="44" height="40" rx="4" fill="#1d1c1a"/><rect x="182" y="334" width="44" height="40" rx="4" fill="#1d1c1a"/>
+    <rect x="10" y="40" width="240" height="262" rx="4" fill="#f6f4ef"/>
+    <line x1="130" y1="48" x2="130" y2="296" stroke="#d8d4cb" stroke-width="2"/>
+    <rect x="10" y="290" width="240" height="2" fill="#7a5c30"/>
+    <g fill="#bfbab0"><rect x="14" y="70" width="6" height="22"/><rect x="14" y="250" width="6" height="22"/><rect x="240" y="70" width="6" height="22"/><rect x="240" y="250" width="6" height="22"/><rect x="118" y="150" width="6" height="40"/><rect x="136" y="150" width="6" height="40"/></g>
+    <image href="/public/brand/seal-ink.svg" x="34" y="78" width="76" height="76"/>
+    <rect x="18" y="306" width="28" height="12" fill="#b0463a"/><rect x="214" y="306" width="28" height="12" fill="#b0463a"/>
+  </svg>
+  <p class="mock-caption" style="left: 800px; width: 984px;">Delivery vehicle: horizontal lockup in obsidian on the box side, the seal on the rear doors, a gold-deep hairline along the base.</p>
+</section>
+
+<!-- Website -->
+<section class="page page--obsidian" data-chapter="Applications">
+  <div style="position: absolute; left: var(--m); top: var(--top);"><h2 class="h2">Website</h2></div>
+  <!-- Screenshot slot: drop the final captures at brand-book/assets/website-desktop.png
+       (1440 wide) and brand-book/assets/website-mobile.png (390 wide) and re-run pnpm brand-book. -->
+  <div class="browser shadow-card" style="left: 136px; top: 232px; width: 1180px;">
+    <div class="browser__bar"><span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__url"></span></div>
+    <div class="shot" style="height: 664px;" data-slot="Desktop screenshot: brand-book/assets/website-desktop.png"><img src="/brand-book/assets/website-desktop.png" alt="Liquid Legacy Distribution website, desktop" onerror="this.parentNode.classList.add('shot--missing'); this.remove();"></div>
+  </div>
+  <div class="phone shadow-card" style="left: 1420px; top: 190px; width: 364px; height: 730px;">
+    <div class="shot" style="height: 702px;" data-slot="Mobile screenshot: brand-book/assets/website-mobile.png"><img src="/brand-book/assets/website-mobile.png" alt="Liquid Legacy Distribution website, mobile" onerror="this.parentNode.classList.add('shot--missing'); this.remove();"></div>
+  </div>
+  <p class="mock-caption" style="left: 136px;">The live landing page on desktop and mobile.</p>
+</section>
+
+<!-- Closing -->
+<section class="page cover" data-folio="none">
+  <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; text-align: center;">
+    <img src="/public/brand/official-monogram.png" alt="" style="width: 300px;">
+    <p class="h3" style="margin-top: 56px; color: var(--parchment);">Liquid Legacy Distribution</p>
+    <p class="small" style="margin-top: 10px;">Brand guidelines 1.0, November 2026</p>
+    <p class="small" style="margin-top: 6px;">Prepared by AlchemyDev</p>
+    <p class="italic" style="margin-top: 72px; font-size: 22px; color: var(--stone);">Please enjoy responsibly.</p>
+  </div>
+</section>
+
+<script>
+  // Swatches and pairings from the brand tokens
+  const C = {
+    obsidian: ["Obsidian", "#12110F", "18 17 15", "0 6 17 93", "dark"],
+    gold: ["Antique gold", "#BF9F66", "191 159 102", "0 17 47 25", "light"],
+    parchment: ["Parchment", "#EFE8DA", "239 232 218", "0 3 9 6", "light"],
+    coal: ["Coal", "#1B1A17", "27 26 23", "0 4 15 89", "dark"],
+    char: ["Char", "#24221E", "36 34 30", "0 6 17 86", "dark"],
+    gilt: ["Gilt", "#E6D3A3", "230 211 163", "0 8 29 10", "light"],
+    bronze: ["Bronze", "#755D45", "117 93 69", "0 21 41 54", "dark"],
+    goldDeep: ["Gold deep", "#7A5C30", "122 92 48", "0 25 61 52", "dark"],
+    stone: ["Stone", "#A8A093", "168 160 147", "0 5 13 34", "light"],
+    ink: ["Ink", "#1A1815", "26 24 21", "0 8 19 90", "dark"],
+  };
+  const sw = ([name, hex, rgb, cmyk, tone], big) => `<div class="swatch swatch--${tone}${hex === "#12110F" || hex === "#1A1815" || hex === "#1B1A17" ? " swatch--outlined" : ""}" style="background:${hex};${big ? "height:100%;" : ""}"><div class="swatch__name" style="${big ? "" : "font-size:22px;line-height:28px;"}">${name}</div><div class="swatch__values"><span>HEX ${hex}</span><span>RGB ${rgb}</span><span>CMYK ${cmyk}</span></div></div>`;
+  document.getElementById("primary-swatches").innerHTML = ["obsidian", "gold", "parchment"].map((k) => sw(C[k], true)).join("");
+  document.getElementById("secondary-swatches").innerHTML = ["coal", "char", "gilt", "bronze", "goldDeep", "stone", "ink"].map((k) => sw(C[k], false)).join("");
+  const pairs = [
+    ["Parchment on obsidian", "#EFE8DA", "#12110F", "15.5:1"],
+    ["Gold on obsidian", "#BF9F66", "#12110F", "7.5:1"],
+    ["Stone on obsidian", "#A8A093", "#12110F", "7.3:1"],
+    ["Ink on parchment", "#1A1815", "#EFE8DA", "14.5:1"],
+    ["Gold deep on parchment", "#7A5C30", "#EFE8DA", "5.1:1"],
+  ];
+  document.getElementById("pairings").innerHTML = pairs.map(([n, fg, bg, r]) => `<tr><td style="width:96px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:48px;background:${bg};color:${fg};font-family:var(--text);font-size:26px;box-shadow:inset 0 0 0 1px rgba(168,160,147,.25);">Aa</span></td><td>${n}</td><td class="num" style="text-align:right;">${r}</td></tr>`).join("");
+
+  // Clear-space diagram from the build metrics (x = cap height of the monogram L)
+  (async () => {
+    let x = 0.371;
+    try { x = (await (await fetch("/brand/logos/metrics.json")).json())["lockup-horizontal"].x; } catch {}
+    const H = 132, aspect = 5.1913, W = H * aspect, X = H * x;
+    const u = (l, t) => `<div class="clearspace__unit" style="left:${l}px;top:${t}px;width:${X}px;height:${X}px;">x</div>`;
+    document.getElementById("clearspace-slot").innerHTML = `
+      <div class="clearspace" style="width:${W + 2 * X}px;height:${H + 2 * X}px;">
+        <div class="clearspace__zone" style="inset:0;"></div>
+        <img src="/public/brand/lockup-horizontal-gold.svg" alt="" style="position:absolute;left:${X}px;top:${X}px;height:${H}px;">
+        ${u(0, 0)}${u(W + X, 0)}${u(0, H + X)}${u(W + X, H + X)}
+      </div>`;
+    window.__clearspaceReady = true;
+  })();
+
+  // Folios and contents
+  const pages = [...document.querySelectorAll(".page")];
+  const chapters = [];
+  pages.forEach((p, i) => {
+    const n = i + 1;
+    if (p.dataset.start !== undefined && p.dataset.chapterNum) chapters.push([p.dataset.chapterNum, p.dataset.chapter, n]);
+    if (p.dataset.folio === "none") return;
+    const f = document.createElement("footer");
+    f.className = "folio";
+    f.innerHTML = `<span>Liquid Legacy Distribution brand guidelines</span><span class="folio__right"><span>${p.dataset.chapter || ""}</span><span class="folio__num">${n}</span></span>`;
+    p.appendChild(f);
+  });
+  document.getElementById("contents").innerHTML = chapters.map(([num, title, n]) => `<li><span class="contents__num">${num}</span><span class="contents__title">${title}</span><span class="contents__page">${n}</span></li>`).join("");
+</script>
+</body>
+</html>

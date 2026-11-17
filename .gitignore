@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# env files (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# raw Higgsfield downloads (sources are re-creatable from brand/media-prompts.md)
+media-src/
+
+# local QA output
+qa/output/
+
+# misc
+.DS_Store
+npm-debug.log*
+pnpm-debug.log*
+
+# internal correspondence and team notes (never commit)
+brand/source/internal-*
+CONTRACT.md
+
+# regenerable brand book page renders (pnpm brand-book)
+deliverables/brand-book-pages/
+.next-prod*/

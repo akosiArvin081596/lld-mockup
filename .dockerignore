@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+media-src
+deliverables
+brand-book
+brand/source
+qa
+.env
+.env.*
+!.env.example
+*.md
+!README.md
+.DS_Store
+.next-prod*

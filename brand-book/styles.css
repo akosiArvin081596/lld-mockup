@@ -1,0 +1,264 @@
+/* Liquid Legacy Distribution, brand guidelines 1.0
+   16:9 pages, 1920 x 1080 CSS px. Rendered to PDF by build-pdf.mjs.
+
+   Grid: 12 columns, 136 px outer margins, 32 px gutters (column = 109.33 px).
+   Type: Libre Caslon Display for large headlines (one weight, never bold),
+   Libre Caslon Text for smaller headings and italics, Libre Franklin for
+   body and captions. Sentence case throughout, no tracked capitals.
+   Colour follows the brand proportion: mostly obsidian and coal, parchment
+   where the content is about paper or light grounds, gold as the accent. */
+
+@font-face { font-family: "Caslon Display"; src: url("/brand/fonts/libre-caslon-display/LibreCaslonDisplay-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; }
+@font-face { font-family: "Caslon Text"; src: url("/brand/fonts/libre-caslon-text/LibreCaslonText[wght].ttf") format("truetype"); font-weight: 400 700; font-style: normal; }
+@font-face { font-family: "Caslon Text"; src: url("/brand/fonts/libre-caslon-text/LibreCaslonText-Italic[wght].ttf") format("truetype"); font-weight: 400 700; font-style: italic; }
+@font-face { font-family: "Franklin"; src: url("/brand/fonts/libre-franklin/LibreFranklin[wght].ttf") format("truetype"); font-weight: 100 900; font-style: normal; }
+
+@page { size: 1920px 1080px; margin: 0; }
+
+:root {
+  --obsidian: #12110f;
+  --coal: #1b1a17;
+  --char: #24221e;
+  --gold: #bf9f66;
+  --gilt: #e6d3a3;
+  --bronze: #755d45;
+  --gold-deep: #7a5c30;
+  --parchment: #efe8da;
+  --stone: #a8a093;
+  --ink: #1a1815;
+  --ink-muted: #5a5347;
+
+  --m: 136px;          /* outer margin */
+  --top: 120px;
+  --bottom: 112px;
+  --g: 32px;           /* gutter */
+  --col: 109.333px;
+
+  --display: "Caslon Display", "Libre Caslon Display", serif;
+  --text: "Caslon Text", "Libre Caslon Text", serif;
+  --sans: "Franklin", "Libre Franklin", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #000; }
+body {
+  font-family: var(--sans);
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--parchment);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+}
+img { display: block; }
+
+/* ------------------------------------------------------------------ page */
+
+.page {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--coal);
+  break-after: page;
+  page-break-after: always;
+}
+.page:last-child { break-after: auto; page-break-after: auto; }
+.page--obsidian { background: var(--obsidian); }
+.page--parchment { background: var(--parchment); color: var(--ink); }
+
+.frame {
+  position: absolute;
+  inset: var(--top) var(--m) var(--bottom) var(--m);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--g);
+}
+
+/* running foot: title left, chapter and folio right */
+.folio {
+  position: absolute;
+  left: var(--m);
+  right: var(--m);
+  bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--stone);
+}
+.page--parchment .folio { color: var(--ink-muted); }
+.folio__right { display: flex; gap: 28px; }
+.folio__num { font-variant-numeric: tabular-nums; min-width: 2ch; text-align: right; }
+.on-photo .folio { color: rgba(239, 232, 218, 0.78); }
+
+/* ------------------------------------------------------------- type */
+
+.display { font-family: var(--display); font-weight: 400; font-size: 96px; line-height: 98px; letter-spacing: -0.01em; text-wrap: balance; }
+.h2 { font-family: var(--display); font-weight: 400; font-size: 56px; line-height: 60px; text-wrap: balance; }
+.h3 { font-family: var(--text); font-weight: 400; font-size: 28px; line-height: 34px; }
+.h4 { font-family: var(--text); font-weight: 400; font-size: 24px; line-height: 30px; }
+.lede { font-size: 24px; line-height: 38px; color: var(--parchment); max-width: 34em; }
+.body { font-size: 20px; line-height: 32px; color: var(--stone); max-width: 36em; text-wrap: pretty; }
+.small { font-size: 16px; line-height: 24px; color: var(--stone); }
+.caption { font-size: 15px; line-height: 22px; color: var(--stone); }
+.italic { font-family: var(--text); font-style: italic; }
+.gold { color: var(--gold); }
+.page--parchment .lede { color: var(--ink); }
+.page--parchment .body, .page--parchment .small, .page--parchment .caption { color: var(--ink-muted); }
+.page--parchment .gold { color: var(--gold-deep); }
+.stack > * + * { margin-top: 24px; }
+.stack-sm > * + * { margin-top: 12px; }
+
+/* chapter head on a chapter's first page: the numeral is real sequence */
+.chapter-head { display: flex; align-items: baseline; gap: 28px; }
+.chapter-head__num { font-family: var(--display); font-size: 56px; line-height: 60px; color: var(--gold); font-variant-numeric: lining-nums; }
+.page--parchment .chapter-head__num { color: var(--gold-deep); }
+
+/* lists separated by hairlines (structure, not decoration) */
+.rule-list > li { list-style: none; border-top: 1px solid rgba(191, 159, 102, 0.38); padding: 22px 0 24px; }
+.rule-list > li:last-child { border-bottom: 1px solid rgba(191, 159, 102, 0.38); }
+.page--parchment .rule-list > li { border-color: rgba(122, 92, 48, 0.4); }
+ul.plain { list-style: none; }
+ul.plain > li + li { margin-top: 10px; }
+ul.dash > li { list-style: none; padding-left: 26px; position: relative; }
+ul.dash > li::before { content: ""; position: absolute; left: 0; top: 15px; width: 12px; height: 1px; background: currentColor; opacity: 0.6; }
+
+/* ---------------------------------------------------------- cover */
+
+.cover { background: #0d0c0b url("/public/media/texture-slate.jpg") center / cover no-repeat; }
+.cover::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 36% 50%, rgba(18, 17, 15, 0) 40%, rgba(18, 17, 15, 0.65) 100%); pointer-events: none; }
+.cover__crest { position: absolute; left: 260px; top: 104px; height: 872px; width: auto; z-index: 1; }
+.cover__title { position: absolute; left: 1192px; right: var(--m); bottom: 176px; z-index: 1; }
+.cover__title .display { font-size: 120px; line-height: 116px; color: var(--parchment); }
+.cover__meta { margin-top: 40px; font-size: 18px; line-height: 28px; color: var(--stone); }
+
+/* ---------------------------------------------------------- contents */
+
+.contents { grid-column: 6 / span 7; align-self: start; margin-top: 8px; }
+.contents li { display: grid; grid-template-columns: 96px 1fr auto; align-items: baseline; padding: 15px 0 17px; }
+.contents__num { font-family: var(--display); font-size: 36px; line-height: 40px; color: var(--gold); }
+.contents__title { font-family: var(--text); font-size: 32px; line-height: 40px; color: var(--parchment); }
+.contents__page { font-size: 16px; color: var(--stone); font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------- openers */
+
+.opener img.bleed { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.opener::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18, 17, 15, 0.86) 0%, rgba(18, 17, 15, 0.55) 38%, rgba(18, 17, 15, 0.05) 70%), linear-gradient(0deg, rgba(18, 17, 15, 0.7) 0%, rgba(18, 17, 15, 0) 45%); }
+.opener__text { position: absolute; left: var(--m); bottom: 168px; z-index: 2; }
+.opener__num { font-family: var(--display); font-size: 200px; line-height: 160px; color: var(--gold); }
+.opener__title { font-family: var(--display); font-size: 144px; line-height: 140px; color: var(--parchment); margin-top: 28px; letter-spacing: -0.012em; }
+.opener .folio { z-index: 2; }
+
+/* ---------------------------------------------------------- panels and figures */
+
+.slate { background: #0d0c0b url("/public/media/texture-slate.jpg") center / cover no-repeat; }
+.panel { position: relative; display: flex; align-items: center; justify-content: center; }
+.fig-caption { margin-top: 18px; }
+.fig-caption .h4 + .caption { margin-top: 6px; }
+
+/* logo variation grid */
+.variations { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 300px 300px; gap: var(--g); margin-top: 48px; }
+.variation { background: var(--obsidian); position: relative; padding: 28px 32px; display: grid; grid-template-rows: 1fr auto; }
+.variation__art { display: flex; align-items: center; justify-content: center; min-height: 0; }
+.variation__art img { max-width: 100%; max-height: 100%; }
+.variation--wide { grid-column: span 3; }
+.variation--third { grid-column: span 2; }
+.variation__meta { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: 18px; }
+
+/* status note for proposals */
+.status { display: inline-block; font-family: var(--text); font-style: italic; font-size: 24px; line-height: 30px; color: var(--gold); }
+
+/* clear space */
+.clearspace { position: relative; display: inline-block; }
+.clearspace__zone { position: absolute; border: 1px dashed rgba(191, 159, 102, 0.7); }
+.clearspace__unit { position: absolute; display: flex; align-items: center; justify-content: center; background: rgba(191, 159, 102, 0.12); outline: 1px solid rgba(191, 159, 102, 0.55); font-family: var(--text); font-style: italic; color: var(--gold); font-size: 22px; }
+
+/* tables */
+table.spec { width: 100%; border-collapse: collapse; }
+table.spec th { text-align: left; font-weight: 500; font-size: 16px; line-height: 22px; color: var(--stone); padding: 0 0 14px; }
+table.spec td { border-top: 1px solid rgba(191, 159, 102, 0.32); padding: 16px 0 18px; vertical-align: middle; font-size: 18px; line-height: 26px; }
+table.spec tr:last-child td { border-bottom: 1px solid rgba(191, 159, 102, 0.32); }
+.page--parchment table.spec td { border-color: rgba(122, 92, 48, 0.36); }
+.page--parchment table.spec th { color: var(--ink-muted); }
+.num { font-variant-numeric: tabular-nums lining-nums; }
+
+/* misuse */
+.misuse { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr 1fr; gap: 40px var(--g); margin-top: 0; height: 100%; }
+.misuse__tile { display: grid; grid-template-rows: 1fr auto; min-height: 0; }
+.misuse__art { position: relative; overflow: hidden; background: var(--obsidian); display: flex; align-items: center; justify-content: center; }
+.misuse__art .x { position: absolute; top: 14px; right: 14px; width: 22px; height: 22px; }
+.misuse__intro { display: flex; flex-direction: column; justify-content: space-between; }
+
+/* colour */
+.swatch { position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 28px 26px; }
+.swatch__name { font-family: var(--text); font-size: 30px; line-height: 36px; }
+.swatch__values { margin-top: 14px; font-size: 15px; line-height: 23px; font-variant-numeric: tabular-nums lining-nums; }
+.swatch__values span { display: block; }
+.swatch--light { color: var(--ink); }
+.swatch--dark { color: var(--parchment); }
+.swatch--dark .swatch__values { color: rgba(239, 232, 218, 0.72); }
+.swatch--light .swatch__values { color: rgba(26, 24, 21, 0.72); }
+.swatch--outlined { box-shadow: inset 0 0 0 1px rgba(168, 160, 147, 0.28); }
+
+/* type specimens */
+.specimen__aa { font-size: 200px; line-height: 180px; white-space: nowrap; }
+.specimen__set { font-size: 30px; line-height: 40px; margin-top: 28px; }
+.specimen { align-self: start; margin-top: 96px; }
+.specimen__set { text-wrap: pretty; }
+
+/* photography */
+.photo { position: relative; overflow: hidden; min-height: 0; }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+figure { min-height: 0; }
+
+/* mockup surfaces */
+.surface { position: relative; background: var(--obsidian); overflow: hidden; }
+.surface--stone { background: #d9d2c3; }
+.shadow-card { box-shadow: 0 2px 3px rgba(0, 0, 0, 0.35), 0 26px 50px -12px rgba(0, 0, 0, 0.55); }
+.shadow-paper { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 22px 44px -16px rgba(0, 0, 0, 0.45); }
+
+/* business card, 3.5 x 2 in at 160 px/in */
+.bcard { position: absolute; width: 560px; height: 320px; background: var(--obsidian); border-radius: 3px; }
+.bcard--front { display: flex; align-items: center; justify-content: center; }
+.bcard--back { padding: 42px 44px; color: var(--parchment); }
+.bcard__name { font-family: var(--text); font-size: 28px; line-height: 34px; }
+.bcard__title { font-size: 14px; line-height: 20px; color: var(--stone); margin-top: 6px; }
+.bcard__contact { position: absolute; left: 44px; bottom: 40px; font-size: 13px; line-height: 21px; color: var(--parchment); font-variant-numeric: lining-nums; }
+.bcard__mark { position: absolute; right: 44px; bottom: 44px; height: 34px; width: auto; }
+
+/* letterhead, US Letter at 72 px/in x 0.94 */
+.letter { position: absolute; width: 576px; height: 745px; background: #f6f1e7; color: var(--ink); padding: 54px 58px; font-size: 10.5px; line-height: 16px; }
+.letter__lockup { height: 34px; width: auto; }
+.letter__rule { height: 1px; background: var(--gold-deep); opacity: 0.7; margin: 22px 0 40px; }
+.letter p + p { margin-top: 11px; }
+.letter__foot { position: absolute; left: 58px; right: 58px; bottom: 40px; font-size: 8.5px; line-height: 12px; color: var(--ink-muted); display: flex; justify-content: space-between; border-top: 1px solid rgba(122, 92, 48, 0.4); padding-top: 10px; }
+
+/* email */
+.mail { position: absolute; background: #fff; color: #222; font-size: 17px; line-height: 26px; }
+.mail__bar { height: 52px; border-bottom: 1px solid #e6e3dd; display: flex; align-items: center; padding: 0 28px; gap: 10px; color: #77736b; font-size: 15px; }
+.mail__body { padding: 36px 44px 44px; }
+.sig__name { font-weight: 600; color: var(--ink); }
+.sig__meta { color: var(--ink-muted); font-size: 15px; line-height: 23px; font-variant-numeric: lining-nums; }
+.sig__note { color: var(--ink-muted); font-size: 13px; line-height: 20px; margin-top: 14px; }
+
+/* website frames */
+.browser { position: absolute; background: var(--char); border-radius: 6px; overflow: hidden; }
+.browser__bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; }
+.browser__dot { width: 10px; height: 10px; border-radius: 50%; background: #3a3732; }
+.browser__url { margin-left: 18px; height: 24px; flex: 1; max-width: 420px; border-radius: 3px; background: #1a1916; }
+.shot { position: relative; overflow: hidden; background: var(--obsidian); }
+.shot img { width: 100%; height: auto; }
+.shot--missing::after { content: attr(data-slot); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--stone); font-size: 18px; border: 1px dashed var(--bronze); }
+.phone { position: absolute; background: #0a0a09; border-radius: 44px; padding: 14px; box-shadow: inset 0 0 0 2px #2c2a26; }
+.phone .shot { border-radius: 32px; }
+
+/* captions under mockups sit on one line above the folio */
+.mock-caption { position: absolute; top: 944px; font-size: 15px; line-height: 22px; color: var(--stone); }
+.page--parchment .mock-caption { color: var(--ink-muted); }
+.quad { position: relative; display: flex; align-items: center; justify-content: center; }
+.quad__caption { position: absolute; bottom: 112px; font-size: 15px; line-height: 22px; }
+
+/* Libre Caslon Text Italic puts an ornamental "st" in its standard ligatures; keep the italic plain */
+.italic, i, em, [style*="font-style: italic"] { font-variant-ligatures: no-common-ligatures no-discretionary-ligatures no-historical-ligatures; }

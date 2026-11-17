@@ -29,7 +29,7 @@ export function Legacy() {
       className="section-screen overflow-hidden bg-obsidian"
     >
       {/* Dark stone ground under the text (static), softened by a vignette. */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 w-full lg:w-[62vw]">
+      <div aria-hidden="true" data-surface className="pointer-events-none absolute inset-y-0 left-0 w-full lg:w-[62vw]">
         <Image src="/media/texture-slate.jpg" alt="" fill sizes="62vw" className="object-cover opacity-45" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_35%_45%,transparent_0%,rgb(var(--obsidian)/0.55)_60%,rgb(var(--obsidian)/0.95)_100%)]" />
       </div>

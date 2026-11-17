@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils";
  * in the original 959 x 593 space, then re-encoded as relative path commands.
  * Alaska and Hawaii are shown as insets, as in the source.
  *
- * States are listed west to east. Each path gets --i (0 to 1) from that order, which
- * motion-sections.css uses to draw the outlines across the country as the map scrolls in.
+ * States are listed west to east. Each path gets --we (0 to 1) from that order, which
+ * motion-sections.css uses to trace the outlines across the country when Reach locks in.
  */
 const STATE_PATHS: ReadonlyArray<readonly [code: string, d: string]> = [
   ["CA", "M69 366l4 5h-2l-1-2zM71 356l2 4l3 1v-1l-1-2l-2-3zM51 337v2l2 1h5l1-1h-3zM46 337h3l1 3h-4zM93 382l-1-3l1-3l-1-7l-2-5l-1-2v-1l-7-9h-4l-2-2l1-1l-1-4l-2-1l-4-1l-2-1l-2-2l-4-7l-3-2h-4l-3-3l-5-1h-3l-2-3v-3l1-5l2-5l-2-1l-4-10l-2-3l-1-3l-1-3v-2l-2-5l-3-3l1-7l2-1l2-3l-1-3l-1-1h-2l-3-3l-1-4v-7l1-4v-3l3 1v1l-1 1v2l4 4v-5l-2-4l1-1l-1-1l2-2l-1-3l-2 1l-1 4v1l-1 1h-1l-5-6l1-6l-1-4l-7-13l1-10l2-4v-6l-5-11v-6l7-7l2-3v-1l4-9v-9l1-2l66 19l-17 63l2 3l70 105l-1 2l1 4l2 1l1 6l2 3l1 2l-2 1l-4 2l-3 3l-1 7l-3 3l-1 1l-2 7l2 1h1l1 2v2l-3 3h-3z"],
@@ -101,7 +101,7 @@ export function UsMap({ highlighted = [], label, className }: UsMapProps) {
             key={code}
             d={d}
             pathLength={1}
-            style={{ "--i": (index / last).toFixed(3) } as CSSProperties}
+            style={{ "--we": (index / last).toFixed(3) } as CSSProperties}
             className="map-state"
           />
         ))}
@@ -113,7 +113,7 @@ export function UsMap({ highlighted = [], label, className }: UsMapProps) {
             d={d}
             data-state={code}
             pathLength={1}
-            style={{ "--i": (index / last).toFixed(3) } as CSSProperties}
+            style={{ "--we": (index / last).toFixed(3) } as CSSProperties}
             className={cn(
               "map-state transition-[fill] duration-300",
               active.has(code) ? "fill-gold/85 stroke-obsidian/80" : "fill-obsidian/[0.18] stroke-gold/[0.85]",

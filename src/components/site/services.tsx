@@ -45,7 +45,7 @@ export function Services() {
               intro={services.intro}
             />
 
-            <ul className="mt-12 border-b border-bronze/35 lg:mt-10">
+            <ul className="mt-12 lg:mt-10">
               {services.items.map((item, i) => {
                 const isActive = i === active;
                 return (
@@ -90,6 +90,8 @@ export function Services() {
                 );
               })}
             </ul>
+            {/* Closing rule under the last row: draws with the ledger, never shown before lock-in. */}
+            <span aria-hidden="true" data-reveal="line" className="block h-px bg-bronze/35" />
           </div>
 
           {/* Desktop photo panel. Decorative: the descriptions are already in the list. */}

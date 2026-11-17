@@ -13,7 +13,7 @@
  *   Standards  "develop"    the crate photograph develops from dark, with a slight settle
  *              "press"      titles and text set in, letter-spacing tightening to normal
  *   Reach      "push"       the highway photograph slowly pushes in
- *              .map-draw    the map traces west to east (scroll-driven, below)
+ *              .map-draw    then the map traces west to east (on lock-in, below)
  *   Footer     "seal"       the crest emerges, then one gold glint (the hero's lld-glint)
  *
  * Supporting elements use the base primitives in motion-hero.css ("up", "line", "fade").
@@ -81,6 +81,7 @@
     transform: scaleY(0);
   }
   html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="develop"] {
+    opacity: 0;
     filter: brightness(0.35);
     transform: scale(1.06);
   }
@@ -258,12 +259,18 @@
     transform: scaleY(1);
   }
 }
+/* The print appears in the tray (opacity), then develops from dark to fully exposed. */
 @keyframes lld-develop {
-  from {
+  0% {
+    opacity: 0;
     filter: brightness(0.35);
     transform: scale(1.06);
   }
-  to {
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
     filter: brightness(1);
     transform: scale(1);
   }
@@ -306,35 +313,34 @@
 }
 
 /*
- * Reach map draw: the state outlines trace west to east as the map scrolls into view.
- * Scroll-driven, so it is bound to the visitor's own scrolling; it finishes before a snapped
- * section comes to rest. Paths use pathLength="1", so 1 is a full outline.
+ * Reach map trace: part of the Coverage moment. Nothing of the map shows before Reach locks
+ * in; then the state outlines trace west to east (--we, 0 to 1, set per path in us-map.tsx)
+ * just after the highway starts to push in, and the Alaska and Hawaii inset lines fade in
+ * last. Paths use pathLength="1", so a dash offset of 1 hides a full outline.
  */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .map-draw {
-      view-timeline-name: --map-draw;
-    }
-
-    .map-draw .map-state {
-      stroke-dasharray: 1;
-      stroke-dashoffset: 1;
-      animation: lld-map-draw linear both;
-      animation-timeline: --map-draw;
-      /* --i runs 0..1 from west to east. Every outline finishes by cover 42%, before a snapped
-         section comes to rest (about cover 50%). */
-      animation-range: entry calc(10% + var(--i, 0) * 40%) cover calc(28% + var(--i, 0) * 14%);
-    }
-
-    .map-draw .map-insets {
-      animation: lld-map-fade linear both;
-      animation-timeline: --map-draw;
-      animation-range: cover 25% cover 42%;
-    }
+@media screen and (prefers-reduced-motion: no-preference) {
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) .map-draw .map-state {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  html.js:not(.reveal-off) [data-section]:not([data-in="true"]) .map-draw .map-insets {
+    opacity: 0;
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] .map-draw .map-state {
+    stroke-dasharray: 1;
+    animation: lld-map-draw var(--motion-dur) var(--motion-ease) backwards;
+    animation-delay: calc(var(--motion-step) * 2 + var(--we, 0) * var(--motion-dur-slow));
+  }
+  html.js:not(.reveal-off) [data-section][data-in="true"] .map-draw .map-insets {
+    animation: lld-map-fade var(--motion-dur) var(--motion-ease) backwards;
+    animation-delay: calc(var(--motion-step) * 2 + var(--motion-dur-slow));
   }
 }
 
 @keyframes lld-map-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
   to {
     stroke-dashoffset: 0;
   }

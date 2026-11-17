@@ -403,7 +403,8 @@
 }
 
 /* ---------- Signature 8 · Contact · Lamp on ----------
- * The still life brightens as if a lamp is switched on (brightness 0.45 to 1) while a warm band
+ * The still life comes up from black and brightens as if a lamp is switched on (opacity 0 to 1,
+ * brightness 0.45 to 1) while a warm band
  * of light sweeps across it left to right. The heading writes in (clip wipe left to right).
  * Then the form fields appear row by row, each with a gold underline drawing left to right.
  */
@@ -418,8 +419,11 @@
   mix-blend-mode: soft-light;
 }
 @media (prefers-reduced-motion: no-preference) {
+  /* Lamp on from black: the still life fades up out of the dark while it brightens. */
   html.js [data-reveal="lamp"] {
-    transition: filter var(--motion-dur-slow) var(--motion-ease);
+    transition:
+      opacity calc(var(--motion-dur-slow) * 0.6) var(--motion-ease),
+      filter var(--motion-dur-slow) var(--motion-ease);
     transition-delay: calc(var(--i, 0) * var(--motion-step));
   }
   html.js [data-reveal="write"] {
@@ -438,6 +442,7 @@
 }
 @media screen and (prefers-reduced-motion: no-preference) {
   html.js:not(.reveal-off) [data-section]:not([data-in="true"]) [data-reveal="lamp"] {
+    opacity: 0;
     filter: brightness(0.45);
   }
   html.js:not(.reveal-off) [data-section][data-in="true"] [data-reveal="lamp"] .lld-lamp-sweep {

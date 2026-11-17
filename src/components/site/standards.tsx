@@ -22,7 +22,7 @@ export function Standards() {
       className="section-screen surface-light overflow-hidden"
     >
       {/* Cotton paper, multiplied into the parchment so the band reads as a printed page. */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      <div aria-hidden="true" data-surface className="pointer-events-none absolute inset-0">
         <Image src="/media/texture-paper.jpg" alt="" fill sizes="100vw" className="object-cover opacity-70 mix-blend-multiply" />
       </div>
 

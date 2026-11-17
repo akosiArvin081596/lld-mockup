@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -77,7 +78,13 @@ export function Reach() {
           </div>
 
           <div className="lg:order-1 lg:col-span-8 lg:mx-auto lg:w-full lg:max-w-[calc((100svh-var(--header-h)-5rem)*1.617)]">
-            <UsMap label={reach.mapLabel} highlighted={served} />
+            {/*
+              The map is fully transparent until Reach locks in, then fades up while its outlines
+              trace west to east (motion-sections.css). Early manual slot: it belongs with the push.
+            */}
+            <div data-reveal="fade" data-reveal-order="manual" style={{ "--i": 1 } as CSSProperties}>
+              <UsMap label={reach.mapLabel} highlighted={served} />
+            </div>
           </div>
         </div>
       </div>

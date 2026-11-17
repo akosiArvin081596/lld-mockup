@@ -44,23 +44,43 @@ Copy `.env.example` to `.env.production` on the VPS and fill it in. Never commit
 
 ## The proposal mockup: lld-mockup.abedubas.dev
 
-The site is currently a proposal, published as a mockup. Email delivery, contact details and the legal review come later.
+The site is currently a proposal, published as a mockup on the shared VPS. Email delivery, contact details and the legal review come later.
 
-1. **DNS:** point an A record for `lld-mockup.abedubas.dev` at the VPS.
-2. **App env** (e.g. `/etc/lld-site.env`, `chmod 600`, no quotes around values):
-   ```
-   SITE_URL=https://lld-mockup.abedubas.dev
-   NEXT_PUBLIC_ALLOW_INDEXING=false
-   CONTACT_DEMO_MODE=1
-   PROXY_SECRET=<openssl rand -hex 32>
-   ```
-   With `CONTACT_DEMO_MODE=1` the form shows its success state but **nothing is sent or stored**. The app logs a warning on start. Remove it before the real launch.
-3. **Build and run** (Option A below):
-   ```bash
-   docker build -t lld-site --build-arg SITE_URL=https://lld-mockup.abedubas.dev .
-   ```
-   Then run it with the hardened `docker run` command, using that env file.
-4. **Nginx:** `deploy/nginx.lld-mockup.conf` (set the same proxy secret), then `sudo certbot --nginx -d lld-mockup.abedubas.dev`. `.dev` domains only work over HTTPS.
+That VPS also serves other clients, so the mockup only adds its own pieces: one container bound to 127.0.0.1, one Nginx site and one certificate. **Port 3000 is taken there, so the mockup uses 3480.** DNS needs no change, because `*.abedubas.dev` already points at the VPS.
+
+| What | Where |
+|---|---|
+| Code (git checkout of this repo) | `/opt/lld-mockup/app` |
+| App env (`chmod 600`, root only) | `/opt/lld-mockup/lld-mockup.env` |
+| Container | `lld-mockup`, published on `127.0.0.1:3480` (container port 3000) |
+| Image optimizer cache | Docker volume `lld-mockup-cache` |
+| Nginx site | `/etc/nginx/sites-available/lld-mockup.abedubas.dev`, from `deploy/nginx.lld-mockup.conf` |
+| Certificate | `/etc/letsencrypt/live/lld-mockup.abedubas.dev/`, renewed by the existing certbot timer |
+
+The env file holds these values, without quotes:
+
+```
+SITE_URL=https://lld-mockup.abedubas.dev
+NEXT_PUBLIC_ALLOW_INDEXING=false
+CONTACT_DEMO_MODE=1
+PROXY_SECRET=<openssl rand -hex 32; the same value goes in the Nginx X-LLD-Proxy line>
+```
+
+With `CONTACT_DEMO_MODE=1`, the form shows its success state but **nothing is sent or stored**, and the app logs a warning. Remove it before the real launch, then replace the container.
+
+**Redeploy after a push to `main`.** The swap takes a few seconds, and Nginx needs no change:
+
+```bash
+cd /opt/lld-mockup/app && sudo git pull --ff-only
+TAG=$(date +%Y%m%d-%H%M)
+sudo docker build -t lld-mockup:$TAG --build-arg SITE_URL=https://lld-mockup.abedubas.dev .
+sudo docker rm -f lld-mockup
+sudo docker run -d --name lld-mockup --restart unless-stopped \
+  -p 127.0.0.1:3480:3000 --env-file /opt/lld-mockup/lld-mockup.env \
+  --read-only --tmpfs /tmp --mount type=volume,src=lld-mockup-cache,dst=/app/.next/cache \
+  --cap-drop=ALL --security-opt no-new-privileges \
+  --memory 768m --cpus 1.5 --pids-limit 256 lld-mockup:$TAG
+```
 
 ## Deploying to the VPS
 
